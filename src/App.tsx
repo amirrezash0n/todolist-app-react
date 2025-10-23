@@ -8,7 +8,7 @@ export default function App() {
   return (
     <div className="App">
       <div className="header">
-        <h1>Todolist-App</h1>
+        <h1>Todolist App</h1>
         <div>
           <Form todos={todos} setTodos={setTodos} />
         </div>

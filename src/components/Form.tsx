@@ -7,6 +7,7 @@ interface FormProps {
   setTodos: React.Dispatch<React.SetStateAction<Todo[]>>;
 }
 
+// components/Form.tsx
 export default function Form({ todos, setTodos }: FormProps) {
   const [input, setInput] = useState("");
 
@@ -16,23 +17,27 @@ export default function Form({ todos, setTodos }: FormProps) {
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    setTodos([...todos, { name: input, completed: false, id: uuid() }]);
-    setInput("");
+    if (input.trim()) {
+      setTodos([...todos, { name: input, completed: false, id: uuid() }]);
+      setInput("");
+    }
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        className="form-input"
-        type="text"
-        placeholder="enter a todos"
-        autoComplete="off"
-        value={input}
-        onChange={handleInputChange}
-      />
-      <button className="form-button" type="submit">
-        Add
-      </button>
-    </form>
+    <div className="form-container">
+      <form onSubmit={handleSubmit} className="form-wrapper">
+        <input
+          className="form-input"
+          type="text"
+          placeholder="Enter A Todo"
+          autoComplete="off"
+          value={input}
+          onChange={handleInputChange}
+        />
+        <button className="form-button" type="submit" disabled={!input.trim()}>
+          Add
+        </button>
+      </form>
+    </div>
   );
 }

@@ -9,59 +9,85 @@ body {
   color: white;
   min-height: 100vh;
   font-family: 'Roboto', sans-serif;
+  padding: 20px;
 }
 
-.header,
+/* Header Styles */
+.header {
+  text-align: center;
+  margin: 30px 10px;
+}
+
 h1 {
   color: white;
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  margin-bottom: 30px;
   text-align: center;
-  margin: 40px 10px;
 }
 
+/* Form Styles */
 .form-input,
 .form-button {
-  padding: 10px;
-  font-size: 18px;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
+  padding: 12px;
+  font-size: 16px;
   border-radius: 10px;
   font-weight: 500;
+  transition: all 0.3s ease-in-out;
 }
 
 .form-input {
-  width: 350px;
+  width: 100%;
+  max-width: 350px;
   border: 2px solid gray;
   background-color: #1f1f1f;
   color: white;
-
+  margin-bottom: 15px;
 }
 
 .form-button {
-  width: 90px;
+  width: 100%;
+  max-width: 350px;
   color: #fff;
   cursor: pointer;
-  margin-left: 15px;
   border: 2px solid grey;
   background: transparent;
-  transition: 0.3s all ease-in-out;
+  margin-left: 0;
 }
 
 .form-button:hover {
   background: #1f1f1f;
+  transform: translateY(-2px);
 }
 
-.todo-li {
-  margin: 16px;
-  background: transparent;
-  font-size: 24px;
-  color: black;
+/* Form Container */
+.form-container {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   align-items: center;
+  gap: 15px;
+  margin-bottom: 30px;
 }
 
+/* Todo List Container */
 .todo-ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.todo-ul ul {
+  width: 100%;
+  max-width: 800px;
+  list-style: none;
+}
+
+/* Todo Item Styles */
+.todo-li {
+  margin: 16px 0;
+  background: transparent;
+  font-size: 18px;
+  color: black;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -69,75 +95,368 @@ h1 {
 
 .li-list {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
   border: 1px solid grey;
-  padding: 12px;
+  padding: 15px;
+  border-radius: 10px;
+  background-color: #2a2f3a;
+  width: 100%;
+  max-width: 800px;
+  gap: 10px;
 }
 
+/* Input in Todo Items */
+.li-input {
+  flex: 1;
+  min-width: 200px;
+  height: 40px;
+  font-size: 16px;
+  border: 2px solid grey;
+  padding: 0 15px;
+  font-weight: 400;
+  background-color: #1f1f1f;
+  color: white;
+  border-radius: 8px;
+}
+
+.li-input.edit-input {
+  border-color: #669bfa;
+}
+
+/* Button Styles */
 .button-complete,
 .button-save,
 .button-delete,
 .button-edit,
 .button-cancel {
   border: none;
-  border-radius: 10px;
+  border-radius: 8px;
   cursor: pointer;
-  width: 100px;
+  width: auto;
+  min-width: 80px;
   height: 40px;
   text-align: center;
-  font-size: 15px;
-  margin-left: 30px;
+  font-size: 14px;
+  margin-left: 0;
   color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  padding: 0 15px;
+  transition: all 0.3s ease;
 }
 
 .button-complete {
   background-color: #4fce5d;
 }
 
+.button-complete:hover {
+  background-color: #3db84a;
+  transform: translateY(-2px);
+}
 
 .button-delete {
   background-color: #fc4338;
+}
+
+.button-delete:hover {
+  background-color: #e3352a;
+  transform: translateY(-2px);
 }
 
 .button-save {
   background-color: #9370DB;
 }
 
+.button-save:hover {
+  background-color: #8360cb;
+  transform: translateY(-2px);
+}
+
 .button-edit {
   background-color: #669bfa;
 }
 
+.button-edit:hover {
+  background-color: #558bf0;
+  transform: translateY(-2px);
+}
+
 .button-cancel {
-  background-color: rgb(101, 101, 5);
+  background-color: #656505;
 }
 
+.button-cancel:hover {
+  background-color: #545404;
+  transform: translateY(-2px);
+}
+
+/* Completed State */
 .completed {
-  text-decoration-style: solid;
-  text-decoration-line: line-through;
-  text-decoration-style: rgb(202, 189, 189);
-  opacity: 0.3;
+  text-decoration: line-through;
+  text-decoration-color: rgb(202, 189, 189);
+  opacity: 0.6;
 }
 
-.li-input {
-  width: 400px;
-  height: 40px;
-  font-size: 18px;
-  border: 2px solid grey;
-  padding-left: 30px;
-  font-weight: 400;
-  background-color: #1f1f1f;
-  color: white;
-}
-
+/* Focus States */
 input:focus,
 button:focus {
   outline: none;
+  box-shadow: 0 0 0 2px rgba(102, 155, 250, 0.3);
 }
 
+/* Text in Buttons */
 .text-complete,
 .text-edit,
 .text-delete,
-.text-save {
-  padding: 5px;
+.text-save,
+.text-cancel {
+  padding: 0 5px;
+  font-weight: 500;
+}
+
+/* Editing State */
+.li-list.editing {
+  border-color: #669bfa;
+  background-color: #2a2f4a;
+}
+
+/* Button Group for Mobile */
+.button-group {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* ========================= */
+/* 📱 Media Queries - ریسپانسیو */
+/* ========================= */
+
+/* تبلت - صفحه متوسط (768px به پایین) */
+@media screen and (max-width: 768px) {
+  body {
+    padding: 15px;
+  }
+
+  .header {
+    margin: 20px 5px;
+  }
+
+  h1 {
+    font-size: clamp(1.5rem, 6vw, 2rem);
+    margin-bottom: 20px;
+  }
+
+  .li-list {
+    flex-direction: column;
+    gap: 15px;
+    padding: 20px;
+  }
+
+  .li-input {
+    min-width: 100%;
+    font-size: 16px;
+  }
+
+  .button-group {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .button-complete,
+  .button-save,
+  .button-delete,
+  .button-edit,
+  .button-cancel {
+    flex: 1;
+    min-width: 120px;
+    font-size: 14px;
+  }
+}
+
+/* موبایل - صفحه کوچک (480px به پایین) */
+@media screen and (max-width: 480px) {
+  body {
+    padding: 10px;
+  }
+
+  .header {
+    margin: 15px 5px;
+  }
+
+  h1 {
+    font-size: 1.6rem;
+    margin-bottom: 15px;
+  }
+
+  .form-input,
+  .form-button {
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  .li-list {
+    padding: 15px;
+    gap: 12px;
+  }
+
+  .li-input {
+    height: 35px;
+    font-size: 14px;
+    padding: 0 12px;
+  }
+
+  .button-complete,
+  .button-save,
+  .button-delete,
+  .button-edit,
+  .button-cancel {
+    height: 35px;
+    font-size: 12px;
+    min-width: 100px;
+    padding: 0 10px;
+  }
+
+  .button-group {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .button-complete,
+  .button-save,
+  .button-delete,
+  .button-edit,
+  .button-cancel {
+    min-width: 100%;
+  }
+
+  .text-complete,
+  .text-edit,
+  .text-delete,
+  .text-save,
+  .text-cancel {
+    font-size: 12px;
+  }
+}
+
+/* موبایل خیلی کوچک (360px به پایین) */
+@media screen and (max-width: 360px) {
+  body {
+    padding: 8px;
+  }
+
+  h1 {
+    font-size: 1.4rem;
+  }
+
+  .form-input,
+  .form-button {
+    padding: 8px;
+    font-size: 13px;
+  }
+
+  .li-list {
+    padding: 12px;
+  }
+
+  .li-input {
+    height: 32px;
+    font-size: 13px;
+  }
+
+  .button-complete,
+  .button-save,
+  .button-delete,
+  .button-edit,
+  .button-cancel {
+    height: 32px;
+    font-size: 11px;
+  }
+}
+
+/* دسکتاپ بزرگ (1200px به بالا) */
+@media screen and (min-width: 1200px) {
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .li-list {
+    max-width: 900px;
+  }
+}
+
+/* حالت تیره و روشن (آماده برای توسعه آینده) */
+@media (prefers-color-scheme: light) {
+  .light-mode {
+    background-color: #f5f5f5;
+    color: #333;
+  }
+
+  .light-mode .form-input,
+  .light-mode .li-input {
+    background-color: white;
+    color: #333;
+    border-color: #ccc;
+  }
+
+  .light-mode .li-list {
+    background-color: white;
+    border-color: #ddd;
+  }
+}
+
+/* حالت چاپ */
+@media print {
+
+  .form-container,
+  .button-edit,
+  .button-delete {
+    display: none;
+  }
+
+  .li-list {
+    border: 1px solid #000;
+    background: white;
+    color: black;
+  }
+}
+
+/* انیمیشن‌های ظریف */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.todo-li {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+/* اسکرول بار سفارشی */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1f1f1f;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #669bfa;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #558bf0;
 }
